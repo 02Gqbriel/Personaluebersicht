@@ -1,6 +1,6 @@
 package personaluebersicht.model.employees;
 
-public class HRPerson extends Person{
+public class HRPerson extends Person {
     private int modus;
     private String pwd;
 
@@ -9,8 +9,8 @@ public class HRPerson extends Person{
         this.modus = modus;
     }
 
-    public void change(Person person,int modus) {
-     //Unklar
+    public void change(Person person, int modus) {
+        // Unklar
     }
 
     public void setModus(int modus) {
@@ -29,7 +29,7 @@ public class HRPerson extends Person{
         return pwd;
     }
 
-    public void writeLogEntry(Action action, Person person) {
-        //unklar
+    public void writeLogEntry(int action, Person person) {
+        // unklar
     }
 }

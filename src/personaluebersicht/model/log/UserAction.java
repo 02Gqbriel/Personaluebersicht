@@ -2,7 +2,6 @@ package personaluebersicht.model.log;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 import personaluebersicht.model.employees.*;
 
@@ -25,7 +24,8 @@ public class UserAction {
                 + " do ";
 
         if (action >= 0 && action < actionDescription.length) {
-            entry += this.actionDescription[action] + " for " + person.getFirstName() + " " + person.getLastName()+";";
+            entry += this.actionDescription[action] + " for " + person.getFirstName() + " " + person.getLastName()
+                    + ";";
         } else {
             entry += "unknown action";
         }
