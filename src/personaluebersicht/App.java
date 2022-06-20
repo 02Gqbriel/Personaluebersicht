@@ -3,11 +3,11 @@ package personaluebersicht;
 import java.util.Random;
 import java.util.Vector;
 
-import personaluebersicht.model.company.Company;
-import personaluebersicht.model.company.Department;
-import personaluebersicht.model.company.JobFunctions;
-import personaluebersicht.model.employees.Person;
-import personaluebersicht.model.employees.Picture;
+import personaluebersicht.facade.*;
+import personaluebersicht.model.employees.*;
+import personaluebersicht.model.company.*;
+import personaluebersicht.model.log.*;
+import personaluebersicht.view.*;
 
 public class App {
     private static String[] vornamen = new String[] { "Gabriel", "Nadim", "Lorenzo", "Nathanael", "Filip", "Blerim",
@@ -16,12 +16,30 @@ public class App {
     private static String[] nachnamen = new String[] { "Egli", "Bhatti", "Vöge", "Preu", "Kotur", "Mueller", "Meier",
             "Benak", "Ronaldo", "Messi", "Pogba", "Bale", "Imbrahimovic", "Slavkovic", "Joksimovic", "Maurizi" };
 
+    // model > company
     static Company company;
     static Vector<Department> departments = new Vector<>();
     static Vector<JobFunctions> jobFunctions = new Vector<>();
+    static Vector<Teams> teams = new Vector<>();
+
+    // model > employees
+    static Vector<Participation> participations = new Vector<>();
     static Vector<Person> persons = new Vector<>();
+    static HRPerson hrPerson;
+
+    // model > log
+    static LogBook logBook;
+
+    // facade
+    static PersonsFacade personsFacade;
+    static LogbuchFacade logbuchFacade;
+
+    // view
+    static PersonaluebersichtGUIFinal mainFrame;
 
     public static void main(String[] args) {
+
+        // Modelklassen
         company = new Company("Produkta Konkurs GmbH");
 
         departments.add(new Department("Informatik"));
@@ -30,18 +48,60 @@ public class App {
         departments.add(new Department("Werbung"));
         departments.add(new Department("Human Resources"));
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 1; i < 3; i++) {
             JobFunctions jb = new JobFunctions();
 
-            jb.addJobFunction("Telekomunist");
-            jb.addJobFunction("Ausbildner");
+            jb.addJobFunction("Telekomunist " + i);
+            jb.addJobFunction("Ausbildner " + i);
 
             jobFunctions.add(new JobFunctions());
+        }
+
+        for (int i = 1; i < 4; i++) {
+            Teams team = new Teams();
+
+            team.addTeam("Webentwickler " + i);
+            team.addTeam("Netzwerktechniker " + i);
+            team.addTeam("Androidentwickler " + i);
+            team.addTeam("Backendentwickler " + i);
+            
+            teams.add(team);
         }
 
         for (int i = 0; i < 20; i++) {
             persons.add(genratePerson());
         }
+
+        hrPerson = new HRPerson("Frederico", "Maneca", new Picture("person.jpg"), 2);
+
+        for (int i = 0; i < persons.size(); i++) {
+            Participation participation = new Participation(persons.get(i));
+
+            participation.addFunction(jobFunctions.get(random(0, jobFunctions.size())));
+            participation.addTeam(teams.get(random(0, teams.size())));
+
+            participations.add(participation);
+        }
+
+        for (int i = 0; i < departments.size(); i++) {
+            company.addDepartment(departments.get(i));
+        }
+
+        for (int i = 0; i < persons.size(); i++) {
+            departments.get(random(0, departments.size())).addMember(persons.get(i));
+        }
+
+        logBook = LogBook.getLogBookInstance();
+
+        // Facaden
+
+        personsFacade = new PersonsFacade(persons, participations, departments);
+        logbuchFacade = new LogbuchFacade();
+
+
+        // GUI
+        mainFrame = new PersonaluebersichtGUIFinal();
+
 
     }
 
