@@ -37,6 +37,10 @@ public class App {
     // view
     static PersonaluebersichtGUIFinal mainFrame;
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
 
         // Modelklassen
@@ -103,11 +107,21 @@ public class App {
 
     }
 
+    
+    /** 
+     * @return Person
+     */
     private static Person genratePerson() {
         return new Person(vornamen[random(0, vornamen.length - 1)], nachnamen[random(0, nachnamen.length - 1)],
                 new Picture("person.jpg"));
     }
 
+    
+    /** 
+     * @param min
+     * @param max
+     * @return int
+     */
     private static int random(int min, int max) {
         return new Random().nextInt((max - min) + 1) + min;
     }

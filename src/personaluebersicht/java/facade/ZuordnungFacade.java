@@ -5,6 +5,14 @@ import java.util.Vector;
 import personaluebersicht.java.model.employees.*;
 import personaluebersicht.java.model.company.*;;
 
+/**
+* the facade for the assignment class
+*
+* @author Gabriel Egli
+* @since 2020-06-21
+* @version 1.0
+*
+*/
 public class ZuordnungFacade {
     private Vector<Person> persons;
     private Vector<Participation> participations;
@@ -17,9 +25,18 @@ public class ZuordnungFacade {
         this.participations = participations;
     }
 
-    public Person getPerson(String firstName, String lastName) {
+    
+    /** 
+     * gets a person by their name
+     * 
+     * @param name the name of the person
+     * @return Person the person searched for
+     */
+    public Person getPerson(String name) {
+        String[] names = name.split(" ");
+
         for (Person person : persons) {
-            if (person.getFirstName().equals(firstName) && person.getLastName().equals(lastName)) {
+            if (person.getFirstName().equals(names[0]) && person.getLastName().equals(names[1])) {
                 return person;
             }
         }
@@ -27,6 +44,14 @@ public class ZuordnungFacade {
         return null;
     }
 
+    
+    /** 
+     * updates a person
+     * 
+     * @param person the person to be updated
+     * @param name the new name
+     * @return boolean true = successful; false = unsuccessful
+     */
     public boolean updateName(Person person, String name) {
         String[] names = name.split(" ");
 
@@ -40,6 +65,14 @@ public class ZuordnungFacade {
         }
     }
 
+    
+    /** 
+     * updates department of a person
+     * 
+     * @param person the person in question
+     * @param abteilung the new department name
+     * @return boolean true = successful; false = unsuccessful
+     */
     public boolean updateDepartment(Person person, String abteilung) {
         boolean removeDone = false, addDone = false;
 
@@ -61,6 +94,14 @@ public class ZuordnungFacade {
         return (removeDone && addDone);
     }
 
+    
+    /** 
+     * updates one function of a person
+     * 
+     * @param person the person in question
+     * @param function the new function name
+     * @return boolean true = successful; false = unsuccessful
+     */
     public boolean updateFunction(Person person, String function) {
         for (Participation participation : participations) {
             if (participation.getOwner() == person) {
@@ -72,6 +113,14 @@ public class ZuordnungFacade {
         return false;
     }
 
+    
+    /** 
+     * updates a team of a person
+     * 
+     * @param person the person in question
+     * @param team the new team name
+     * @return boolean true = successful; false = unsuccessful
+     */
     public boolean updateTeam(Person person, String team) {
         for (Participation participation : participations) {
             if (participation.getOwner() == person) {
@@ -83,6 +132,12 @@ public class ZuordnungFacade {
         return false;
     }
 
+    
+    /** 
+     * gets a list of person
+     * 
+     * @return Vector<String> the person vector
+     */
     public Vector<String> getPersonsList() {
         Vector<String> personsList = new Vector<>();
 
