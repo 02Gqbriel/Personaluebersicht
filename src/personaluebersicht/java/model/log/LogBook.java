@@ -1,4 +1,4 @@
-package personaluebersicht.model.log;
+package personaluebersicht.java.model.log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

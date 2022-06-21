@@ -1,6 +1,6 @@
-package personaluebersicht.model.employees;
+package personaluebersicht.java.model.employees;
 
-import personaluebersicht.model.company.*;
+import personaluebersicht.java.model.company.*;
 
 import java.util.ArrayList;
 

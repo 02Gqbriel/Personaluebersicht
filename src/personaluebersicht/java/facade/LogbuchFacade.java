@@ -1,17 +1,17 @@
-package personaluebersicht.facade;
+package personaluebersicht.java.facade;
 
 import java.util.Vector;
 
-import personaluebersicht.model.log.LogBook;
+import personaluebersicht.java.model.log.LogBook;
 
 public class LogbuchFacade {
     LogBook logBook;
 
-    public LogbuchFacade(){
+    public LogbuchFacade() {
         logBook = LogBook.getLogBookInstance();
     }
 
-    public Vector<String> getLogList(){
+    public Vector<String> getLogList() {
         Vector<String> logList = new Vector<>();
 
         for (int i = 0; i < logBook.getSize(); i++) {

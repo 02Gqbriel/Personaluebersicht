@@ -1,4 +1,4 @@
-package personaluebersicht.model.company;
+package personaluebersicht.java.model.company;
 
 import java.util.ArrayList;
 

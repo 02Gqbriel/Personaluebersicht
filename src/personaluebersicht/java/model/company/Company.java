@@ -1,4 +1,4 @@
-package personaluebersicht.model.company;
+package personaluebersicht.java.model.company;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,7 @@ public class Company {
 
     public Company(String name) {
         this.name = name;
+        departments = new ArrayList<>();
     }
 
     public String getCompanyName() {
@@ -23,7 +24,7 @@ public class Company {
     }
 
     public String getDepartmentsName() {
-        //Unklar
+        // Unklar
         return "";
     }
 

@@ -1,4 +1,4 @@
-package personaluebersicht.model.employees;
+package personaluebersicht.java.model.employees;
 
 public class Picture {
     private String path;

@@ -1,9 +1,9 @@
-package personaluebersicht.model.log;
+package personaluebersicht.java.model.log;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import personaluebersicht.model.employees.*;
+import personaluebersicht.java.model.employees.*;
 
 public class UserAction {
     public static int CREATE_PERSON = 0;

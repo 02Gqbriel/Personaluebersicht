@@ -1,18 +1,19 @@
-package personaluebersicht.facade;
+package personaluebersicht.java.facade;
 
 import java.util.HashMap;
 import java.util.Vector;
 
-import personaluebersicht.model.company.Department;
-import personaluebersicht.model.employees.Participation;
-import personaluebersicht.model.employees.Person;
+import personaluebersicht.java.model.company.Department;
+import personaluebersicht.java.model.employees.Participation;
+import personaluebersicht.java.model.employees.Person;
 
-public class PersonsFacade {
+public class UebersichtFacade {
     private Vector<Person> persons;
     private Vector<Participation> participations;
     private Vector<Department> departments;
 
-    public PersonsFacade(Vector<Person> persons, Vector<Participation> participations, Vector<Department> departments) {
+    public UebersichtFacade(Vector<Person> persons, Vector<Participation> participations,
+            Vector<Department> departments) {
         this.persons = persons;
         this.participations = participations;
         this.departments = departments;

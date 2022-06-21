@@ -1,6 +1,6 @@
-package personaluebersicht.model.company;
+package personaluebersicht.java.model.company;
 
-import personaluebersicht.model.employees.*;
+import personaluebersicht.java.model.employees.*;
 import java.util.ArrayList;
 
 public class Department {
@@ -9,6 +9,7 @@ public class Department {
 
     public Department(String name) {
         this.name = name;
+        members = new ArrayList<>();
     }
 
     public String getName() {

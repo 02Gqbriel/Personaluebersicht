@@ -1,4 +1,4 @@
-package personaluebersicht.view;
+package personaluebersicht.java.view;
 
 import javax.swing.*;
 

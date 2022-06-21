@@ -1,13 +1,13 @@
-package personaluebersicht;
+package personaluebersicht.java;
 
 import java.util.Random;
 import java.util.Vector;
 
-import personaluebersicht.facade.*;
-import personaluebersicht.model.employees.*;
-import personaluebersicht.model.company.*;
-import personaluebersicht.model.log.*;
-import personaluebersicht.view.*;
+import personaluebersicht.java.facade.*;
+import personaluebersicht.java.model.employees.*;
+import personaluebersicht.java.model.company.*;
+import personaluebersicht.java.model.log.*;
+import personaluebersicht.java.view.*;
 
 public class App {
     private static String[] vornamen = new String[] { "Gabriel", "Nadim", "Lorenzo", "Nathanael", "Filip", "Blerim",
@@ -64,7 +64,7 @@ public class App {
             team.addTeam("Netzwerktechniker " + i);
             team.addTeam("Androidentwickler " + i);
             team.addTeam("Backendentwickler " + i);
-            
+
             teams.add(team);
         }
 
@@ -77,8 +77,8 @@ public class App {
         for (int i = 0; i < persons.size(); i++) {
             Participation participation = new Participation(persons.get(i));
 
-            participation.addFunction(jobFunctions.get(random(0, jobFunctions.size())));
-            participation.addTeam(teams.get(random(0, teams.size())));
+            participation.addFunction(jobFunctions.get(random(0, jobFunctions.size() - 1)));
+            participation.addTeam(teams.get(random(0, teams.size() - 1)));
 
             participations.add(participation);
         }
@@ -88,7 +88,7 @@ public class App {
         }
 
         for (int i = 0; i < persons.size(); i++) {
-            departments.get(random(0, departments.size())).addMember(persons.get(i));
+            departments.get(random(0, departments.size() - 1)).addMember(persons.get(i));
         }
 
         logBook = LogBook.getLogBookInstance();
@@ -98,15 +98,13 @@ public class App {
         personsFacade = new PersonsFacade(persons, participations, departments);
         logbuchFacade = new LogbuchFacade();
 
-
         // GUI
         mainFrame = new PersonaluebersichtGUIFinal();
-
 
     }
 
     private static Person genratePerson() {
-        return new Person(vornamen[random(0, vornamen.length)], nachnamen[random(0, nachnamen.length)],
+        return new Person(vornamen[random(0, vornamen.length - 1)], nachnamen[random(0, nachnamen.length - 1)],
                 new Picture("person.jpg"));
     }
 
