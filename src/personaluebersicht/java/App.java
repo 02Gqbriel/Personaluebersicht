@@ -95,7 +95,7 @@ public class App {
 
         // Facaden
 
-        personsFacade = new PersonsFacade(persons, participations, departments);
+        personsFacade = new PersonsFacade(persons);
         logbuchFacade = new LogbuchFacade();
 
         // GUI

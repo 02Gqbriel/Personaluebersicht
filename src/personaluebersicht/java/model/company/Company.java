@@ -35,4 +35,8 @@ public class Company {
     public int getNumberOfDepartments() {
         return departments.size();
     }
+
+    public void setName(String name){
+        this.name = name;
+    }
 }
