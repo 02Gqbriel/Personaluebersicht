@@ -1,4 +1,5 @@
 package personaluebersicht.model.employees;
+
 import personaluebersicht.model.company.*;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class Participation {
     }
 
     public String getFunctionName(int index) {
-        //Potentielle Fehlerquelle
+        // Potentielle Fehlerquelle
         return function.get(index).getJobFunction(index);
     }
 
@@ -36,7 +37,7 @@ public class Participation {
     }
 
     public String getTeamName(int index) {
-        //potentielle Fehlerquelle
+        // potentielle Fehlerquelle
         return teams.get(index).getTeam(index);
     }
 
@@ -46,6 +47,14 @@ public class Participation {
 
     public int getNumberOfTeams() {
         return teams.size();
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 
 }
