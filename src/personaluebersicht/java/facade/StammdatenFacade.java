@@ -94,7 +94,7 @@ public class StammdatenFacade {
     public boolean deleteDepartment(Department department) {
         for (int i = 0; i < departments.size(); i++) {
             if (departments.get(i) == department) {
-                department.removeMember(i);
+                departments.remove(i);
                 return true;
             }
         }
