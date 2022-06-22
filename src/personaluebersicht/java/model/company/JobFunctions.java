@@ -24,4 +24,8 @@ public class JobFunctions {
     public int getSize() {
         return designations.size();
     }
+
+    public void setJobFunction(int index, String jobFunctionName) {
+        designations.set(index, jobFunctionName);
+    }
 }

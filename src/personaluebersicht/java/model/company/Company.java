@@ -24,8 +24,11 @@ public class Company {
     }
 
     public String getDepartmentsName() {
-        // Unklar
-        return "";
+        String names = "";
+        for (Department entry : departments) {
+            names += ", " + entry.getName();
+        }
+        return names;
     }
 
     public void removeDepartment(int index) {
@@ -36,7 +39,7 @@ public class Company {
         return departments.size();
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 }

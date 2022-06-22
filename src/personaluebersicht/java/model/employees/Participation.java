@@ -1,12 +1,10 @@
 package personaluebersicht.java.model.employees;
 
-import personaluebersicht.java.model.company.*;
-
 import java.util.ArrayList;
 
 public class Participation {
-    private ArrayList<JobFunctions> function;
-    private ArrayList<Teams> teams;
+    private ArrayList<String> function;
+    private ArrayList<String> teams;
     private Person owner;
 
     public Participation(Person person) {
@@ -15,13 +13,13 @@ public class Participation {
         teams = new ArrayList<>();
     }
 
-    public void addFunction(JobFunctions function) {
+    public void addFunction(String function) {
         this.function.add(function);
     }
 
     public String getFunctionName(int index) {
         // Potentielle Fehlerquelle
-        return function.get(index).getJobFunction(index);
+        return function.get(index);
     }
 
     public void removeFunction(int index) {
@@ -32,13 +30,13 @@ public class Participation {
         return function.size();
     }
 
-    public void addTeam(Teams teams) {
+    public void addTeam(String teams) {
         this.teams.add(teams);
     }
 
     public String getTeamName(int index) {
         // potentielle Fehlerquelle
-        return teams.get(index).getTeam(index);
+        return teams.get(index);
     }
 
     public void removeTeam(int index) {

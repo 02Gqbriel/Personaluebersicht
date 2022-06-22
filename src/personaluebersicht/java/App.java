@@ -18,9 +18,9 @@ public class App {
 
     // model > company
     static Company company;
+    static Teams team;
+    static JobFunctions jobFunctions;
     static Vector<Department> departments = new Vector<>();
-    static Vector<JobFunctions> jobFunctions = new Vector<>();
-    static Vector<Teams> teams = new Vector<>();
 
     // model > employees
     static Vector<Participation> participations = new Vector<>();
@@ -37,8 +37,7 @@ public class App {
     // view
     static PersonaluebersichtGUIFinal mainFrame;
 
-    
-    /** 
+    /**
      * @param args
      */
     public static void main(String[] args) {
@@ -52,25 +51,15 @@ public class App {
         departments.add(new Department("Werbung"));
         departments.add(new Department("Human Resources"));
 
-        for (int i = 1; i < 3; i++) {
-            JobFunctions jb = new JobFunctions();
+        jobFunctions = new JobFunctions();
+        jobFunctions.addJobFunction("Telekomunist");
+        jobFunctions.addJobFunction("Ausbildner");
 
-            jb.addJobFunction("Telekomunist " + i);
-            jb.addJobFunction("Ausbildner " + i);
-
-            jobFunctions.add(new JobFunctions());
-        }
-
-        for (int i = 1; i < 4; i++) {
-            Teams team = new Teams();
-
-            team.addTeam("Webentwickler " + i);
-            team.addTeam("Netzwerktechniker " + i);
-            team.addTeam("Androidentwickler " + i);
-            team.addTeam("Backendentwickler " + i);
-
-            teams.add(team);
-        }
+        team = new Teams();
+        team.addTeam("Webentwickler");
+        team.addTeam("Netzwerktechniker");
+        team.addTeam("Androidentwickler");
+        team.addTeam("Backendentwickler");
 
         for (int i = 0; i < 20; i++) {
             persons.add(genratePerson());
@@ -81,8 +70,8 @@ public class App {
         for (int i = 0; i < persons.size(); i++) {
             Participation participation = new Participation(persons.get(i));
 
-            participation.addFunction(jobFunctions.get(random(0, jobFunctions.size() - 1)));
-            participation.addTeam(teams.get(random(0, teams.size() - 1)));
+            participation.addFunction(jobFunctions.getJobFunction(random(0, jobFunctions.getSize() - 1)));
+            participation.addTeam(team.getTeam(random(0, team.getSize() - 1)));
 
             participations.add(participation);
         }
@@ -107,8 +96,7 @@ public class App {
 
     }
 
-    
-    /** 
+    /**
      * @return Person
      */
     private static Person genratePerson() {
@@ -116,8 +104,7 @@ public class App {
                 new Picture("person.jpg"));
     }
 
-    
-    /** 
+    /**
      * @param min
      * @param max
      * @return int

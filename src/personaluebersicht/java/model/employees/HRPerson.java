@@ -1,5 +1,8 @@
 package personaluebersicht.java.model.employees;
 
+import personaluebersicht.java.model.log.LogBook;
+import personaluebersicht.java.model.log.UserAction;
+
 public class HRPerson extends Person {
     private int modus;
     private String pwd;
@@ -30,6 +33,7 @@ public class HRPerson extends Person {
     }
 
     public void writeLogEntry(int action, Person person) {
-        // unklar
+        UserAction userAction = new UserAction(this, person, action);
+        LogBook.getLogBookInstance().addEntry(userAction.getEntry());
     }
 }

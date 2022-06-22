@@ -8,13 +8,13 @@ import personaluebersicht.java.model.employees.Participation;
 import personaluebersicht.java.model.employees.Person;
 
 /**
-* the facade for the overview, "uebersicht", class
-*
-* @author Gabriel Egli
-* @since 2020-06-21
-* @version 1.0
-*
-*/
+ * the facade for the overview, "uebersicht", class
+ *
+ * @author Gabriel Egli
+ * @since 2020-06-21
+ * @version 1.0
+ *
+ */
 public class UebersichtFacade {
     private Vector<Person> persons;
     private Vector<Participation> participations;
@@ -27,8 +27,7 @@ public class UebersichtFacade {
         this.departments = departments;
     }
 
-    
-    /** 
+    /**
      * gets a person based on his name
      * 
      * @param name the name of the person
@@ -46,8 +45,7 @@ public class UebersichtFacade {
         return null;
     }
 
-    
-    /** 
+    /**
      * gets a vector of function names of one person
      * 
      * @param person the person assocaited to the function vector
@@ -67,8 +65,7 @@ public class UebersichtFacade {
         return functionList;
     }
 
-    
-    /** 
+    /**
      * gets a vector of team names of one person
      * 
      * @param person the person assocaited to the team vector
@@ -88,8 +85,7 @@ public class UebersichtFacade {
         return teamList;
     }
 
-    
-    /** 
+    /**
      * get the name of the department associated with the person
      * 
      * @param person the person in question
@@ -107,42 +103,42 @@ public class UebersichtFacade {
         return null;
     }
 
-    
-    /** 
+    /**
      * get a filtered and sorted list of all the person in the company
      * 
-     * @param sort the sort parameter ["asc" => alphabetic ascending; "desc" => alphabetic descending]
-     * @param filter the filter hash map; key => "Abteilung" || "Funktion" || "Team"; value => an array of corresponding values
+     * @param sort   the sort parameter ["asc" => alphabetic ascending; "desc" =>
+     *               alphabetic descending]
+     * @param filter the filter hash map; key => "Abteilung" || "Funktion" ||
+     *               "Team"; value => an array of corresponding values
      * @return Vector<String> the filtered and sorted list
      */
     public Vector<String> getPersonsList(String sort, HashMap<String, String[]> filter) {
         return getPersonsList(sort, filter, getPersonsList());
     }
 
-    
-    /** 
+    /**
      * get a sorted list of all the person in the company
      * 
-     * @param sort the sort parameter ["asc" => alphabetic ascending; "desc" => alphabetic descending]
+     * @param sort the sort parameter ["asc" => alphabetic ascending; "desc" =>
+     *             alphabetic descending]
      * @return Vector<String> the sorted list
      */
     public Vector<String> getPersonsList(String sort) {
         return getPersonsList(sort, null, getPersonsList());
     }
 
-    
-    /** 
+    /**
      * get a filtered list of all the person in the company
      * 
-     * @param filter the filter hash map; key => "Abteilung" || "Funktion" || "Team"; value => an array of corresponding values
+     * @param filter the filter hash map; key => "Abteilung" || "Funktion" ||
+     *               "Team"; value => an array of corresponding values
      * @return Vector<String> the filtered list
      */
     public Vector<String> getPersonsList(HashMap<String, String[]> filter) {
         return getPersonsList(null, filter, getPersonsList());
     }
 
-    
-    /** 
+    /**
      * gets a not sorted and neither filtered list of persons
      * 
      * @return Vector<String> the vector of persons
@@ -158,12 +154,13 @@ public class UebersichtFacade {
         return personsList;
     }
 
-    
-    /** 
+    /**
      * the mother function which handles all other getPersonList functions
      * 
-     * @param sort the sort parameter ["asc" => alphabetic ascending; "desc" => alphabetic descending]
-     * @param filter the filter hash map; key => "Abteilung" || "Funktion" || "Team"; value => an array of corresponding values
+     * @param sort        the sort parameter ["asc" => alphabetic ascending; "desc"
+     *                    => alphabetic descending]
+     * @param filter      the filter hash map; key => "Abteilung" || "Funktion" ||
+     *                    "Team"; value => an array of corresponding values
      * @param personsList the current person list
      * @return Vector<String> the requested person vector
      */
@@ -200,13 +197,13 @@ public class UebersichtFacade {
                         }
                     }
 
-                    if (filter.containsKey("Funktion")) {
-                        String[] functionFilter = filter.get("Funktion");
+                    if (filter.containsKey("Team")) {
+                        String[] temaFilter = filter.get("Team");
 
-                        for (String functionString : functionFilter) {
-                            for (int j = 0; j < participation.getNumberOfFunctions(); j++) {
+                        for (String teamString : temaFilter) {
+                            for (int j = 0; j < participation.getNumberOfTeams(); j++) {
                                 add = participation.getOwner() == persons.get(i)
-                                        && participation.getFunctionName(j).equals(functionString);
+                                        && participation.getTeamName(j).equals(teamString);
                             }
                         }
                     }

@@ -24,4 +24,8 @@ public class Teams {
     public int getSize() {
         return designations.size();
     }
+
+    public void setTeam(int index, String teamName) {
+        designations.set(index, teamName);
+    }
 }
