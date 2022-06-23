@@ -8,6 +8,8 @@ import org.junit.*;
 import personaluebersicht.java.facade.*;
 import personaluebersicht.java.model.company.*;
 
+// UseCase == Stammdaten erfassen
+
 public class UseCaseTest {
     private static Company company;
 
