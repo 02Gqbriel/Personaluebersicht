@@ -1,21 +1,12 @@
 package personaluebersicht.java;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-import java.util.Random;
-import java.util.Vector;
-
-import org.junit.Before;
-import org.junit.Test;
+import java.util.*;
+import org.junit.*;
 
 import personaluebersicht.java.facade.*;
 import personaluebersicht.java.model.company.*;
-import personaluebersicht.java.model.employees.*;
-import personaluebersicht.java.model.log.*;
 
 public class UseCaseTest {
     private static Company company;
@@ -26,8 +17,6 @@ public class UseCaseTest {
     private static JobFunctions jobFunctions;
 
     private static Vector<Department> departments = new Vector<>();
-
-    private static LogBook logBook;
 
     @Before
     public void init() {
@@ -66,6 +55,18 @@ public class UseCaseTest {
         stammdatenFacade.setCompanyName("New Company Name");
 
         assertEquals("New Company Name", company.getCompanyName());
+    }
+
+    @Test
+    public void getDepartmentByName() {
+        int index = random(0, departments.size());
+
+        assertEquals(departments.get(index), stammdatenFacade.getDepartment(departments.get(index).getName()));
+    }
+
+    @Test
+    public void getDepartmentByNameWrong() {
+        assertNull(stammdatenFacade.getDepartment("This Department doesn't exist"));
     }
 
     @Test
