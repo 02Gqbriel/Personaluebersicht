@@ -1,6 +1,5 @@
 package personaluebersicht.java.model.company;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import personaluebersicht.java.model.employees.Person;
@@ -15,7 +14,6 @@ public class CompanyTest {
     private JobFunctions jobFunctions;
     private Teams teams;
 
-
     @Before
     public void init() {
         company = new Company("TJK Konk. AG");
@@ -29,7 +27,7 @@ public class CompanyTest {
         teams.addTeam("A-Team");
     }
 
-    //Company
+    // Company
 
     @Test
     public void getCompanyCorrectName() {
@@ -51,7 +49,7 @@ public class CompanyTest {
         assertEquals(company.getNumberOfDepartments(), 1);
     }
 
-    //Department
+    // Department
 
     @Test
     public void getDepartmentMember() {
@@ -63,7 +61,7 @@ public class CompanyTest {
         assertEquals(department.getNumberOfMembers(), 1);
     }
 
-    //JobFunctions
+    // JobFunctions
 
     @Test
     public void getJobFunction() {
@@ -88,4 +86,3 @@ public class CompanyTest {
     }
 
 }
-

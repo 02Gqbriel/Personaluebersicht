@@ -108,4 +108,20 @@ public class PersonsFacade {
 
         return false;
     }
+
+    /**
+     * gets a not sorted and neither filtered list of persons
+     *
+     * @return Vector<String> the vector of persons
+     */
+    public Vector<String> getPersonsList() {
+        Vector<String> personsList = new Vector<>();
+
+        for (int i = 0; i < persons.size(); i++) {
+            Person person = persons.get(i);
+            personsList.add(person.getFirstName() + " " + person.getLastName());
+        }
+
+        return personsList;
+    }
 }

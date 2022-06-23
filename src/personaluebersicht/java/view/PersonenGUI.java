@@ -1,13 +1,17 @@
 package personaluebersicht.java.view;
 
+import personaluebersicht.java.facade.PersonsFacade;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PersonenGUI extends JPanel {
 
-    public PersonenGUI() {
+    public PersonenGUI(PersonsFacade personsFacade) {
 
         JPanel personPanel = new JPanel(new BorderLayout());
         personPanel.setBackground(Color.white);
@@ -15,17 +19,34 @@ public class PersonenGUI extends JPanel {
         selectionPanel.setBackground(Color.white);
         JPanel selectionPanel2 = new JPanel(new GridLayout(1, 3));
         selectionPanel2.setBackground(Color.white);
-        JScrollPane personListScrollPanel = new JScrollPane();
+//
+        DefaultListModel<String> personListModel = new DefaultListModel<>(); //todo
+        JList<String> personList = new JList<>(personListModel);
+        JScrollPane personListScrollPanel = new JScrollPane(personList);
         personListScrollPanel.setBackground(Color.white);
-        JPanel personListPanel = new JPanel(new GridLayout(10, 1));
-        personListPanel.setBackground(Color.white);
+        personListScrollPanel.setPreferredSize(new Dimension(150, 80));
+
+        if (personsFacade != null) {
+            for (String p : personsFacade.getPersonsList()) {
+                personListModel.addElement(p);
+            }
+        }
+
+
+        //todo
+        personListModel.addElement("Person A");
+        personListModel.addElement("Person AA");
+        personListModel.addElement("Person AAA");
+        personListModel.addElement("Person dddA");
+        personListModel.addElement("Person ddA");
+
         JPanel overviewPanel = new JPanel(new BorderLayout());
         overviewPanel.setBackground(Color.white);
         JPanel overviewPanel2 = new JPanel(new BorderLayout());
         overviewPanel2.setBackground(Color.white);
-        JPanel overviewBottomPanel2 = new JPanel(new GridLayout(4, 2));
+        JPanel overviewBottomPanel2 = new JPanel(new GridLayout(2,2));
         overviewBottomPanel2.setBackground(Color.white);
-        JPanel overviewTopPanel1 = new JPanel(new GridLayout(1, 2));
+        JPanel overviewTopPanel1 = new JPanel(new GridLayout(1,2));
         overviewTopPanel1.setBackground(Color.white);
 
         TitledBorder detailBoarder;
@@ -39,17 +60,18 @@ public class PersonenGUI extends JPanel {
         Border border;
         border = BorderFactory.createLineBorder(Color.gray);
 
-        String[] optionsToChoose = { "Apple", "Orange", "Banana", "Pineapple", "None of the listed" };
 
-        personListScrollPanel.add(personListPanel);
+
+
+
+
+
 
         JLabel overview = new JLabel("Übersicht:");
 
         JLabel nameLabel = new JLabel("Name:");
         JTextField name = new JTextField("Quandale Dingle");
         name.setEditable(false);
-        JLabel partyLabel = new JLabel("Abteilung:");
-        JLabel party = new JLabel("Finanzen");
         JLabel functionLabel = new JLabel("Funktionen:");
         JCheckBox function = new JCheckBox();
         function.setEnabled(false);
@@ -60,11 +82,30 @@ public class PersonenGUI extends JPanel {
         team.setBackground(Color.white);
         JLabel img = new JLabel("img");
         JButton add = new JButton("+");
+        class AddListener implements ActionListener {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EditPersonGUI editPersonGUI = new EditPersonGUI();
+            }
+        }
+        add.addActionListener(new AddListener());
         JButton delete = new JButton("x");
-        JButton edit = new JButton("edit");
+        class DeleteListener implements ActionListener {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        overviewBottomPanel2.add(partyLabel);
-        overviewBottomPanel2.add(party);
+            }
+        }
+        delete.addActionListener(new DeleteListener());
+        JButton edit = new JButton("edit");
+        class EditListener implements ActionListener {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        }
+        edit.addActionListener(new EditListener());
+
         overviewBottomPanel2.add(functionLabel);
         overviewBottomPanel2.add(function);
         overviewBottomPanel2.add(teamLabel);

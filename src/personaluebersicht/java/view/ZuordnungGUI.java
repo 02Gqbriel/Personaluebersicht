@@ -1,29 +1,49 @@
 package personaluebersicht.java.view;
 
+import personaluebersicht.java.facade.ZuordnungFacade;
+import personaluebersicht.java.model.employees.Person;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class ZuordnungGUI extends JPanel {
+    String personName;
+    Person person;
 
-    public ZuordnungGUI() {
+    public ZuordnungGUI(ZuordnungFacade zuordnungFacade) {
 
         JPanel personPanel = new JPanel(new BorderLayout());
         personPanel.setBackground(Color.white);
         JPanel selectionPanel = new JPanel(new BorderLayout());
         selectionPanel.setBackground(Color.white);
-        JScrollPane personListScrollPanel = new JScrollPane();
+//        JScrollPane personListScrollPanel = new JScrollPane();
+//        personListScrollPanel.setBackground(Color.white);
+//        JPanel personListPanel = new JPanel(new GridLayout(10, 1));
+//        personListPanel.setBackground(Color.white);
+        DefaultListModel<String> personListModel = new DefaultListModel<>(); //todo
+        JList<String> personList = new JList<>(personListModel);
+        if (zuordnungFacade != null) {
+            for (String p : zuordnungFacade.getPersonsList()) {
+                personListModel.addElement(p);
+            }
+        }
+        personList.setSelectedIndex(0);
+        personName = personList.getSelectedValue();
+        person = zuordnungFacade.getPerson(personName);
+        JScrollPane personListScrollPanel = new JScrollPane(personList);
         personListScrollPanel.setBackground(Color.white);
-        JPanel personListPanel = new JPanel(new GridLayout(10, 1));
-        personListPanel.setBackground(Color.white);
+        personListScrollPanel.setPreferredSize(new Dimension(150, 80));
+
+
         JPanel overviewPanel = new JPanel(new BorderLayout());
         overviewPanel.setBackground(Color.white);
         JPanel overviewPanel2 = new JPanel(new BorderLayout());
         overviewPanel2.setBackground(Color.white);
-        JPanel overviewBottomPanel2 = new JPanel(new GridLayout(4, 2));
+        JPanel overviewBottomPanel2 = new JPanel(new GridLayout(4,2));
         overviewBottomPanel2.setBackground(Color.white);
-        JPanel overviewTopPanel1 = new JPanel(new GridLayout(1, 2));
+        JPanel overviewTopPanel1 = new JPanel(new GridLayout(1,2));
         overviewTopPanel1.setBackground(Color.white);
 
         TitledBorder detailBoarder;
@@ -37,14 +57,17 @@ public class ZuordnungGUI extends JPanel {
         Border border;
         border = BorderFactory.createLineBorder(Color.gray);
 
-        String[] optionsToChoose = { "Apple", "Orange", "Banana", "Pineapple", "None of the listed" };
 
-        personListScrollPanel.add(personListPanel);
+
+        String[] optionsToChoose = {"Apple", "Orange", "Banana", "Pineapple", "None of the listed"};
+
+
+
 
         JLabel overview = new JLabel("Übersicht:");
 
         JLabel nameLabel = new JLabel("Name:");
-        JTextField name = new JTextField("Quandale Dingle");
+        JTextField name = new JTextField(personName);
         name.setEditable(false);
         JLabel partyLabel = new JLabel("Abteilung:");
         JLabel party = new JLabel("Finanzen");
@@ -53,6 +76,7 @@ public class ZuordnungGUI extends JPanel {
         JLabel teamLabel = new JLabel("Teams:");
         JComboBox<String> team = new JComboBox<>(optionsToChoose);
         JLabel img = new JLabel("img");
+
 
         overviewBottomPanel2.add(partyLabel);
         overviewBottomPanel2.add(party);

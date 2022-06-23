@@ -98,7 +98,7 @@ public class App {
         uebersichtFacade = new UebersichtFacade(persons, participations, departments);
 
         // GUI
-        mainFrame = new PersonaluebersichtGUIFinal();
+        mainFrame = new PersonaluebersichtGUIFinal(personsFacade, zuordnungFacade, uebersichtFacade, stammdatenFacade, logbuchFacade);
 
     }
 
