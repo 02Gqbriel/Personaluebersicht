@@ -33,6 +33,9 @@ public class App {
     // facade
     static PersonsFacade personsFacade;
     static LogbuchFacade logbuchFacade;
+    static UebersichtFacade uebersichtFacade;
+    static StammdatenFacade stammdatenFacade;
+    static ZuordnungFacade zuordnungFacade;
 
     // view
     static PersonaluebersichtGUIFinal mainFrame;
@@ -90,6 +93,9 @@ public class App {
 
         personsFacade = new PersonsFacade(persons);
         logbuchFacade = new LogbuchFacade();
+        zuordnungFacade = new ZuordnungFacade(persons, participations, departments);
+        stammdatenFacade = new StammdatenFacade(company, departments, jobFunctions, team);
+        uebersichtFacade = new UebersichtFacade(persons, participations, departments);
 
         // GUI
         mainFrame = new PersonaluebersichtGUIFinal();

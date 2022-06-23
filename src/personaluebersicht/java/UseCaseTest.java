@@ -21,27 +21,13 @@ public class UseCaseTest {
     private static Company company;
 
     private static StammdatenFacade stammdatenFacade;
-    private static UebersichtFacade uebersichtFacade;
-    private static PersonsFacade personsFacade;
-    private static ZuordnungFacade zuordnungFacade;
-    private static LogbuchFacade logbuchFacade;
 
     private static Teams team;
     private static JobFunctions jobFunctions;
 
     private static Vector<Department> departments = new Vector<>();
-    private static Vector<Participation> participations = new Vector<>();
-
-    private static Vector<Person> persons = new Vector<>();
-    private static HRPerson hrPerson;
 
     private static LogBook logBook;
-
-    private static String[] vornamen = new String[] { "Gabriel", "Nadim", "Lorenzo", "Nathanael", "Filip", "Blerim",
-            "Jonathan", "Guenther", "Markus", "Thomas", "Max", "Justus", "Fabian", "Lukas", "Ben", "Nathan" };
-
-    private static String[] nachnamen = new String[] { "Egli", "Bhatti", "Vöge", "Preu", "Kotur", "Mueller", "Meier",
-            "Benak", "Ronaldo", "Messi", "Pogba", "Bale", "Imbrahimovic", "Slavkovic", "Joksimovic", "Maurizi" };
 
     @Before
     public void init() {
@@ -63,27 +49,8 @@ public class UseCaseTest {
         team.addTeam("Androidentwickler");
         team.addTeam("Backendentwickler");
 
-        for (int i = 0; i < 20; i++) {
-            persons.add(genratePerson());
-        }
-
-        hrPerson = new HRPerson("Frederico", "Maneca", new Picture("person.jpg"), 2);
-
-        for (int i = 0; i < persons.size(); i++) {
-            Participation participation = new Participation(persons.get(i));
-
-            participation.addFunction(jobFunctions.getJobFunction(random(0, jobFunctions.getSize() - 1)));
-            participation.addTeam(team.getTeam(random(0, team.getSize() - 1)));
-
-            participations.add(participation);
-        }
-
         for (int i = 0; i < departments.size(); i++) {
             company.addDepartment(departments.get(i));
-        }
-
-        for (int i = 0; i < persons.size(); i++) {
-            departments.get(random(0, departments.size() - 1)).addMember(persons.get(i));
         }
 
         stammdatenFacade = new StammdatenFacade(company, departments, jobFunctions, team);
@@ -225,11 +192,6 @@ public class UseCaseTest {
 
         assertTrue("successfully deleted", stammdatenFacade.deleteTeam(team.getTeam(index)));
         assertNotEquals(teamsBefore.getTeam(index), team.getTeam(index));
-    }
-
-    private static Person genratePerson() {
-        return new Person(vornamen[random(0, vornamen.length - 1)], nachnamen[random(0, nachnamen.length - 1)],
-                new Picture("person.jpg"));
     }
 
     private static int random(int min, int max) {
